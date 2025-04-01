@@ -45,7 +45,6 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-
 @app.route("/auth/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
