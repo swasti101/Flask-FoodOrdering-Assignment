@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Ordering</title>
+</head>
+<body>
+    <h2>Menu</h2>
+
+    <ul>
+        {% for item in items %}
+            <li>
+                {{ item.name }} - Quantity: {{ item.quantity }}
+                <a href="{{ url_for('edit_item', item_id=item.id) }}">Edit</a>
+                <form action="{{ url_for('delete_item', item_id=item.id) }}" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Add Item</h3>
+    <form action="{{ url_for('add_item') }}" method="POST">
+        <input type="text" name="name" placeholder="Item Name" required>
+        <input type="number" name="quantity" placeholder="Quantity" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <br>
+    <form action="{{ url_for('logout') }}" method="POST" style="display:inline;">
+        <button type="submit">Logout</button>
+    </form>
+    
+</body>
+</html>
